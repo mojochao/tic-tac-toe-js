@@ -10,9 +10,13 @@ test('Board test constructed isEmpty with dimension 3', (t) => {
   const available = board.availableCells
   t.equal(board.availableCells.length, 9, 'Board should have 9 cells availableCells for play')
   t.equal(board.isCellAvailable(0), true, 'Cell 0 should not be occupied')
+  let cell = board.getCell(0)
+  t.equal(cell, undefined, 'Cell 0 should be undefined value')
   board.setCell(0, 'x')
   t.equal(board.isCellAvailable(0), false, 'Cell 0 should now be occupied')
   t.equal(board.isEmpty, false, 'Board should not be isEmpty')
+  cell = board.getCell(0)
+  t.equal(cell, 'x', 'Cell 0 should be "x" value')
   t.end()
 })
 

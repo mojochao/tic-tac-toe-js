@@ -62,6 +62,11 @@ export default class Board {
     return this.availableCells.indexOf(idx) !== -1
   }
 
+  getCell(idx) {
+    if (idx >= this.cells.length) throw new RangeError(idx)
+    return this.cells[idx]
+  }
+
   setCell(idx, val) {
     if (idx >= this.cells.length) throw new RangeError(idx)
     this.cells[idx] = val
