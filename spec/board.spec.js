@@ -4,7 +4,7 @@ import Board from '../src/board'
 
 test('Board test constructed empty with dimension 3', (t) => {
   const board = new Board(3)
-  t.equal(board.dim, 3, 'Board dimension should equal 3')
+  t.equal(board.dimension, 3, 'Board dimension should equal 3')
   t.equal(board.empty, true, 'Board should be empty')
   t.equal(board.full, false, 'Board should not be full')
   const available = board.available
@@ -37,7 +37,7 @@ test('Board constructed with cells', (t) => {
     [ 'x', 'x', 'o']
   ]
   const board = new Board(cells)
-  t.equal(board.dim, 3, 'Board dimension should equal 3')
+  t.equal(board.dimension, 3, 'Board dimension should equal 3')
   t.equal(board.empty, false, 'Board should not be empty')
   t.equal(board.full, true, 'Board should be full')
   t.deepEqual(board.horizontals, horizontals, 'Board should have correct horizontal lines')
