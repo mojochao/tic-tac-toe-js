@@ -1,6 +1,6 @@
 import Board from './board'
 
-export function containsAll(arr, val) {
+function containsAll(arr, val) {
   for (let item of arr) {
     if (item !== val) return false
   }
