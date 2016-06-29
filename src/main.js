@@ -6,15 +6,15 @@ function random(arr) {
 }
 
 const dimension = 3
-const player1 = 'x'
-const player2 = 'o'
+const playerOne = 'x'
+const playerTwo = 'o'
 
-const game = new Game(player1, player2, dimension)
-game.onPlayer1Turn = (available) => {
-  game.play(random(available), player1)
+const game = new Game(playerOne, playerTwo, dimension)
+game.onPlayerOne = (available) => {
+  game.play(random(available), playerOne)
 }
-game.onPlayer2Turn = (available) => {
-  game.play(random(available), player2)
+game.onPlayerTwo = (available) => {
+  game.play(random(available), playerTwo)
 }
 game.onGameOver = (winner) => {
   const player = winner === null ? 'no one' : `'${winner}'`

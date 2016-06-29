@@ -14,11 +14,11 @@ export default class Game {
     this.winner = null
   }
 
-  onPlayer1Turn(available) {
+  onPlayerOne(available) {
     throw new Error('replace this event handler with client code')
   }
 
-  onPlayer2Turn(available) {
+  onPlayerTwo(available) {
     throw new Error('replace this event handler with client code')
   }
 
@@ -43,10 +43,10 @@ export default class Game {
 
   _nextTurn() {
     if (this.nextPlayer === 1) {
-      this.onPlayer1Turn(this.board.availableCells)
+      this.onPlayerOne(this.board.availableCells)
       this.nextPlayer = 2
     } else {
-      this.onPlayer2Turn(this.board.availableCells)
+      this.onPlayerTwo(this.board.availableCells)
       this.nextPlayer = 1
     }
   }
