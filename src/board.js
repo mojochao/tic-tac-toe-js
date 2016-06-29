@@ -23,22 +23,23 @@ export default class Board {
 
   get verticals() {
     const arr = []
-    for (let i = 0; i < this.dim; i++) {
-      arr.push([this.cells[i], this.cells[i + this.dim], this.cells[i + this.dim * 2]])
+    for (let i = 0; i < this.dim; ++i) {
+      const line = [ this.cells[i], this.cells[i + this.dim], this.cells[i + this.dim * 2] ]
+      arr.push(line)
     }
     return arr
   }
 
   get diagonals() {
-    const diag1 = []
+    const line1 = []
     for (let i = 0; i < this.cells.length; i += this.dim + 1) {
-      diag1.push(this.cells[i])
+      line1.push(this.cells[i])
     }
-    const diag2 = []
+    const line2 = []
     for (let i = this.cells.length - this.dim; i > 0; i -= (this.dim - 1)) {
-      diag2.push(this.cells[i])
+      line2.push(this.cells[i])
     }
-    return [diag1, diag2]
+    return [line1, line2]
   }
 
   get empty() {
@@ -51,7 +52,7 @@ export default class Board {
 
   get available() {
     const arr = []
-    for (let i = 0; i < this.cells.length; i++) {
+    for (let i = 0; i < this.cells.length; ++i) {
       if (this.cells[i] === undefined) arr.push(i)
     }
     return arr

@@ -1,9 +1,7 @@
 import Board from './board'
 
 function containsAll(arr, val) {
-  for (let item of arr) {
-    if (item !== val) return false
-  }
+  for (let item of arr) if (item !== val) return false
   return true
 }
 
@@ -31,7 +29,7 @@ export default class Game {
   start() {
     while (!this._isGameOver()) {
       this._nextTurn()
-      console.log(this.board.toString())
+      this._render()
     }
     this.onGameOver(this.winner)
   }
@@ -77,5 +75,9 @@ export default class Game {
       if (containsAll(line, this.token2)) return this.token2
     }
     return null
+  }
+
+  _render() {
+    console.log(this.board.toString())
   }
 }
