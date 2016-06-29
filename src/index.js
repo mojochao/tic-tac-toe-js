@@ -1,21 +1,20 @@
 import Game from './game'
 
-function randomInt(min, max) {
-  return Math.floor(Math.random() * (max - min)) + min;
+function random(arr) {
+  const randomInt = (min, max) => Math.floor(Math.random() * (max - min)) + min
+  return arr[randomInt(0, arr.length - 1)]
 }
 
-const DIM = 3
-const PLAYER1 = 'x'
-const PLAYER2 = 'o'
+const dimension = 3
+const player1 = 'x'
+const player2 = 'o'
 
-const game = new Game(PLAYER1, PLAYER2, DIM)
+const game = new Game(player1, player2, dimension)
 game.onPlayer1Turn = (available) => {
-    const play = available[randomInt(0, available.length - 1)]
-    game.playTurn(play, PLAYER1)
+  game.play(random(available), player1)
 }
 game.onPlayer2Turn = (available) => {
-  const play = available[randomInt(0, available.length - 1)]
-  game.playTurn(play, PLAYER2)
+  game.play(random(available), player2)
 }
 game.onGameOver = (winner) => {
   const player = winner === null ? 'no one' : `'${winner}'`

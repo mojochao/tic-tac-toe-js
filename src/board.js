@@ -1,15 +1,13 @@
 export default class Board {
   constructor(obj) {
     if (typeof obj === 'number') {
-      const dimension = obj
-      this.cells = new Array(dimension * dimension)
-      this.dimension = dimension
+      this.dimension = obj
+      this.cells = new Array(this.dimension * this.dimension)
     } else {
       this.cells = obj
-      const dimension = Math.sqrt(this.cells.length)
-      const decimals = dimension - Math.floor(dimension)
+      this.dimension = Math.sqrt(this.cells.length)
+      const decimals = this.dimension - Math.floor(this.dimension)
       if (decimals !== 0) throw new Error('number of cells must be square')
-      this.dimension = dimension
     }
   }
 
@@ -37,14 +35,14 @@ export default class Board {
       line1.push(this.cells[i])
     }
     const line2 = []
-    for (let i = this.cells.length - this.dimension; i > 0; i -= (this.dimension - 1)) {
+    for (let i = this.cells.length - this.dimension; i > 0; i -= this.dimension - 1) {
       line2.push(this.cells[i])
     }
-    return [line1, line2]
+    return [ line1, line2 ]
   }
 
   get empty() {
-    return this.available.length === 9
+    return this.available.length === this.cells.length
   }
 
   get full() {
@@ -59,14 +57,14 @@ export default class Board {
     return arr
   }
 
-  isAvailable(index) {
-    if (index >= this.cells.length) throw new RangeError(index)
-    return this.available.indexOf(index) !== -1
+  isAvailable(idx) {
+    if (idx >= this.cells.length) throw new RangeError(idx)
+    return this.available.indexOf(idx) !== -1
   }
 
-  setCell(index, value) {
-    if (index >= this.cells.length) throw new RangeError(index)
-    this.cells[index] = value
+  setCell(idx, val) {
+    if (idx >= this.cells.length) throw new RangeError(idx)
+    this.cells[idx] = val
   }
 
   toString() {
