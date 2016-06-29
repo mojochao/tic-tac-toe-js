@@ -1,4 +1,4 @@
-import Game from './game'
+import Game from './Game'
 
 function random(arr) {
   const randomInt = (min, max) => Math.floor(Math.random() * (max - min)) + min

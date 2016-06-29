@@ -1,4 +1,4 @@
-import Board from './board'
+import Board from './Board'
 
 function containsOnly(arr, val) {
   for (let item of arr) if (item !== val) return false
