@@ -11,7 +11,7 @@ export default class Board {
     }
   }
 
-  get horizontals() {
+  get horizontalLines() {
     const arr = []
     for (let i = 0; i < this.cells.length; i += this.dimension) {
       const line = this.cells.slice(i, i + this.dimension)
@@ -20,7 +20,7 @@ export default class Board {
     return arr
   }
 
-  get verticals() {
+  get verticalLines() {
     const arr = []
     for (let i = 0; i < this.dimension; ++i) {
       const line = [ this.cells[i], this.cells[i + this.dimension], this.cells[i + this.dimension * 2] ]
@@ -29,7 +29,7 @@ export default class Board {
     return arr
   }
 
-  get diagonals() {
+  get diagonalLines() {
     const line1 = []
     for (let i = 0; i < this.cells.length; i += this.dimension + 1) {
       line1.push(this.cells[i])
@@ -41,15 +41,15 @@ export default class Board {
     return [ line1, line2 ]
   }
 
-  get empty() {
-    return this.available.length === this.cells.length
+  get isEmpty() {
+    return this.availableCells.length === this.cells.length
   }
 
-  get full() {
-    return this.available.length === 0
+  get isFull() {
+    return this.availableCells.length === 0
   }
 
-  get available() {
+  get availableCells() {
     const arr = []
     for (let i = 0; i < this.cells.length; ++i) {
       if (this.cells[i] === undefined) arr.push(i)
@@ -57,9 +57,9 @@ export default class Board {
     return arr
   }
 
-  isAvailable(idx) {
+  isCellAvailable(idx) {
     if (idx >= this.cells.length) throw new RangeError(idx)
-    return this.available.indexOf(idx) !== -1
+    return this.availableCells.indexOf(idx) !== -1
   }
 
   setCell(idx, val) {
@@ -69,7 +69,7 @@ export default class Board {
 
   toString() {
     let str = ''
-    this.horizontals.forEach((line) => {
+    this.horizontalLines.forEach((line) => {
       for (let i = 0; i < this.dimension; ++i) {
         const cell = line[i]
         str += typeof cell === 'undefined' ? '_' : cell

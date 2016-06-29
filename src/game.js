@@ -37,30 +37,30 @@ export default class Game {
 
   play(cell, token) {
     if (this.nextPlayer === null) throw new Error('game not started')
-    if (!this.board.isAvailable(cell)) throw new Error(`cell ${cell} has already been played`)
+    if (!this.board.isCellAvailable(cell)) throw new Error(`cell ${cell} has already been played`)
     this.board.setCell(cell, token)
   }
 
   _nextTurn() {
     if (this.nextPlayer === 1) {
-      this.onPlayer1Turn(this.board.available)
+      this.onPlayer1Turn(this.board.availableCells)
       this.nextPlayer = 2
     } else {
-      this.onPlayer2Turn(this.board.available)
+      this.onPlayer2Turn(this.board.availableCells)
       this.nextPlayer = 1
     }
   }
 
   _isGameOver() {
     this.winner = this._checkWinner()
-    return this.winner !== null || this.board.full
+    return this.winner !== null || this.board.isFull
   }
 
   _checkWinner() {
     return this._checkLines([
-      ...this.board.horizontals,
-      ...this.board.verticals,
-      ...this.board.diagonals
+      ...this.board.horizontalLines,
+      ...this.board.verticalLines,
+      ...this.board.diagonalLines
     ])
   }
 
