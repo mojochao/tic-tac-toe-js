@@ -30,9 +30,6 @@
     "babel-tape-runner": "*",
     "babelify": "7.2.0",
     "eslint": "*",
-    "eslint-config-airbnb": "*",
-    "node-readme": "^0.1.8",
-    "random-js": "^1.0.8",
     "tap-spec": "^4.0.2",
     "tape": "^4.0.0"
   }
