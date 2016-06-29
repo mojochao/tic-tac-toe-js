@@ -13,7 +13,7 @@ $ git clone https://github.com/mojochao/tic-tac-toe-js.git
 $ cd tic-tac-toe-js
 $ npm install
 $ npm test
-$ npm run
+$ npm start
 ```
 
 ## Wokflow
