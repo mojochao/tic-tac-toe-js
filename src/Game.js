@@ -22,6 +22,10 @@ export default class Game {
     throw new Error('replace this event handler with client code')
   }
 
+  onGameUpdate(board) {
+    throw new Error('replace this event handler with client code')
+  }
+
   onGameOver(winner) {
     throw new Error('replace this event handler with client code')
   }
@@ -30,7 +34,7 @@ export default class Game {
     this.nextPlayer = 1
     while (!this._isGameOver()) {
       this._nextTurn()
-      this._render()
+      this.onGameUpdate(this.board)
     }
     this.onGameOver(this.winner)
   }
