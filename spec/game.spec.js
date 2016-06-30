@@ -2,7 +2,7 @@ import test from 'tape'
 
 import Game from '../src/Game'
 
-const iterator = arr => arr[Symbol.iterator]()
+const iterator = (arr) => arr[Symbol.iterator]()
 
 test('Game where player one wins', (t) => {
   const turns = iterator([0, 3, 1, 4, 2])

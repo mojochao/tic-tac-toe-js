@@ -77,7 +77,7 @@ export default class Board {
     this.horizontalLines.forEach((line) => {
       for (let i = 0; i < this.dimension; ++i) {
         const cell = line[i]
-        str += typeof cell === 'undefined' ? '_' : cell
+        str += typeof cell === 'undefined' ? '.' : cell
         str += ' '
       }
       str += '\n'
