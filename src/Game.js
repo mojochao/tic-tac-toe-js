@@ -1,6 +1,6 @@
 import Board from './Board'
 
-function containsOnly(arr, val) {
+const containsOnly = (arr, val) => {
   for (let item of arr) if (item !== val) return false
   return true
 }
@@ -14,11 +14,11 @@ export default class Game {
     this.winner = null
   }
 
-  onPlayerOne(available) {
+  onPlayerOneTurn(available) {
     throw new Error('replace this event handler with client code')
   }
 
-  onPlayerTwo(available) {
+  onPlayerTwoTurn(available) {
     throw new Error('replace this event handler with client code')
   }
 
@@ -35,20 +35,12 @@ export default class Game {
     this.onGameOver(this.winner)
   }
 
-  play(cell, token) {
-    if (this.nextPlayer === null) throw new Error('game not started')
-    if (!this.board.isCellAvailable(cell)) throw new Error(`cell ${cell} has already been played`)
-    this.board.setCell(cell, token)
+  takePlayerOneTurn(cell) {
+    this._playTurn(cell, this.token1)
   }
 
-  _nextTurn() {
-    if (this.nextPlayer === 1) {
-      this.onPlayerOne(this.board.availableCells)
-      this.nextPlayer = 2
-    } else {
-      this.onPlayerTwo(this.board.availableCells)
-      this.nextPlayer = 1
-    }
+  takePlayerTwoTurn(cell) {
+    this._playTurn(cell, this.token2)
   }
 
   _isGameOver() {
@@ -70,6 +62,22 @@ export default class Game {
       if (containsOnly(line, this.token2)) return this.token2
     }
     return null
+  }
+
+  _nextTurn() {
+    if (this.nextPlayer === 1) {
+      this.onPlayerOneTurn(this.board.availableCells)
+      this.nextPlayer = 2
+    } else {
+      this.onPlayerTwoTurn(this.board.availableCells)
+      this.nextPlayer = 1
+    }
+  }
+
+  _playTurn(cell, token) {
+    if (this.nextPlayer === null) throw new Error('game not started')
+    if (!this.board.isCellAvailable(cell)) throw new Error(`cell ${cell} has already been played`)
+    this.board.setCell(cell, token)
   }
 
   _render() {

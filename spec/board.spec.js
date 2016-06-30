@@ -2,13 +2,14 @@ import test from 'tape'
 
 import Board from '../src/board'
 
-test('Board test constructed isEmpty with dimension 3', (t) => {
-  const board = new Board(3)
-  t.equal(board.dimension, 3, 'Board dimension should equal 3')
-  t.equal(board.isEmpty, true, 'Board should be isEmpty')
-  t.equal(board.isFull, false, 'Board should not be isFull')
+test('Board constructed with dimension 3', (t) => {
+  const dimension = 3
+  const board = new Board(dimension)
+  t.equal(board.dimension, dimension, `Board dimension should equal ${dimension}`)
+  t.equal(board.isEmpty, true, 'Board should be empty')
+  t.equal(board.isFull, false, 'Board should not be full')
   const available = board.availableCells
-  t.equal(board.availableCells.length, 9, 'Board should have 9 cells availableCells for play')
+  t.equal(board.availableCells.length, dimension * dimension, `Board should have ${dimension * dimension} cells available for play`)
   t.equal(board.isCellAvailable(0), true, 'Cell 0 should not be occupied')
   let cell = board.getCell(0)
   t.equal(cell, undefined, 'Cell 0 should be undefined value')
@@ -20,7 +21,7 @@ test('Board test constructed isEmpty with dimension 3', (t) => {
   t.end()
 })
 
-test('Board constructed with cells', (t) => {
+test('Board constructed with 9 cells', (t) => {
   const cells = [
     'x', 'o', 'o',
     'o', 'x', 'x',
@@ -40,10 +41,11 @@ test('Board constructed with cells', (t) => {
     [ 'x', 'x', 'x' ],
     [ 'x', 'x', 'o']
   ]
+  const dimension = 3
   const board = new Board(cells)
-  t.equal(board.dimension, 3, 'Board dimension should equal 3')
-  t.equal(board.isEmpty, false, 'Board should not be isEmpty')
-  t.equal(board.isFull, true, 'Board should be isFull')
+  t.equal(board.dimension, dimension, `Board dimension should equal ${dimension}`)
+  t.equal(board.isEmpty, false, 'Board should not be empty')
+  t.equal(board.isFull, true, 'Board should be full')
   t.deepEqual(board.horizontalLines, horizontals, 'Board should have correct horizontal lines')
   t.deepEqual(board.verticalLines, verticals, 'Board should have correct vertical lines')
   t.deepEqual(board.diagonalLines, diagonals, 'Board should have correct diagonal lines')
