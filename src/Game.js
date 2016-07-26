@@ -83,8 +83,4 @@ export default class Game {
     if (!this.board.isCellAvailable(cell)) throw new Error(`cell ${cell} has already been played`)
     this.board.setCell(cell, token)
   }
-
-  _render() {
-    console.log(this.board.toString())
-  }
 }
