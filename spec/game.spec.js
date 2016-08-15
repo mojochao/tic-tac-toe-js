@@ -1,8 +1,9 @@
 import test from 'tape'
 
-import Game from '../src/Game'
+import Game, { range, winPatterns } from '../src/Game'
 
 const iterator = (arr) => arr[Symbol.iterator]()
+
 
 test('Game where player one wins', (t) => {
   const turns = iterator([0, 3, 1, 4, 2])
@@ -41,4 +42,54 @@ test('Game where no player wins', (t) => {
     t.end()
   }
   game.start()
+})
+
+test('range', (t) => {
+  const r0 = range(0, 3)
+  t.deepEqual(r0, [0, 1, 2])
+  t.end()
+})
+
+test('range not zero', (t) => {
+  const r0 = range(4, 6)
+  t.deepEqual(r0, [4, 5])
+  t.end()
+})
+
+test('range with step', (t) => {
+  const r0 = range(0, 9, 3)
+  t.deepEqual(r0, [0, 3, 6])
+  t.end()
+})
+
+test('win patterns 3x3', (t) => {
+  const expected = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+  ]
+  t.deepEqual(winPatterns(3), expected)
+  t.end()
+})
+
+test('win patterns 4x4', (t) => {
+  const expected = [
+    [0, 1, 2, 3],
+    [4, 5, 6, 7],
+    [8, 9, 10, 11],
+    [12, 13, 14, 15],
+    [0, 4, 8, 12],
+    [1, 5, 9, 13],
+    [2, 6, 10, 14],
+    [3, 7, 11, 15],
+    [0, 5, 10, 15],
+    [3, 6, 9, 12]
+  ]
+  t.deepEqual(winPatterns(4), expected)
+  t.end()
 })

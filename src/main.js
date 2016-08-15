@@ -3,6 +3,7 @@ import Game from './Game'
 // Returns random integer between min and max (exclusive)
 const randomInt = (min, max) => Math.floor(Math.random() * (max - min)) + min
 
+// Returns random item from array
 const randomItem = (arr) => arr[randomInt(0, arr.length)]
 
 const game = new Game('x', 'o', 3)
